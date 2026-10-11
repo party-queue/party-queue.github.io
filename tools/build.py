@@ -8,6 +8,12 @@ APK = REPO + "/releases/latest/download/party-queue.apk"
 SHA = REPO + "/releases/latest/download/party-queue.apk.sha256"
 SITE = "https://party-queue.github.io"
 
+# Inline SVG flags: emoji flags show up as the letters "GB" / "PL" on Windows.
+FLAG = {
+    "en": '<svg class="flag" viewBox="0 0 60 30" aria-hidden="true" focusable="false"><clipPath id="fs"><path d="M0,0 v30 h60 v-30 z"/></clipPath><clipPath id="ft"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath><g clip-path="url(#fs)"><path d="M0,0 v30 h60 v-30 z" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#ft)" stroke="#C8102E" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/></g></svg>',
+    "pl": '<svg class="flag" viewBox="0 0 8 5" aria-hidden="true" focusable="false"><rect width="8" height="5" fill="#fff"/><rect y="2.5" width="8" height="2.5" fill="#dc143c"/></svg>',
+}
+
 # -------------------------------------------------------------------------------------------------------------- text
 T = {}
 
@@ -24,7 +30,7 @@ T["en"] = dict(
     latest_fallback="Latest version: see the releases page · about 225 MB",
     req="Android 10 or newer · 64-bit (arm64) phone or tablet · about 225 MB",
     dl_h="Get the app", dl_sub="Scan the code with the phone you want to use as the jukebox, or open the link on it.",
-    qr_main="Scan to download the APK", qr_site="This website",
+    qr_main="Scan to download the APK", 
     dl_steps_h="Direct links",
     dl_links=[("Latest APK (always the newest version)", APK), ("Checksum (SHA-256)", SHA), ("Release notes and older versions", REPO + "/releases"), ("New releases as a feed (RSS/Atom)", REPO + "/releases.atom")],
     how_h="How it works",
@@ -146,7 +152,7 @@ T["pl"] = dict(
     latest_fallback="Najnowsza wersja: zobacz stronę wydań · ok. 225 MB",
     req="Android 10 lub nowszy · telefon lub tablet 64-bitowy (arm64) · ok. 225 MB",
     dl_h="Pobierz aplikację", dl_sub="Zeskanuj kod telefonem, który ma być jukeboxem, albo otwórz na nim link.",
-    qr_main="Zeskanuj, aby pobrać APK", qr_site="Ta strona",
+    qr_main="Zeskanuj, aby pobrać APK", 
     dl_steps_h="Bezpośrednie linki",
     dl_links=[("Najnowszy APK (zawsze najnowsza wersja)", APK), ("Suma kontrolna (SHA-256)", SHA), ("Opis zmian i starsze wersje", REPO + "/releases"), ("Nowe wydania jako kanał (RSS/Atom)", REPO + "/releases.atom")],
     how_h="Jak to działa",
@@ -328,7 +334,7 @@ def page(t):
   <nav class="main" aria-label="Menu">{nav}</nav>
   <span class="sp"></span>
   <button class="pillbtn" id="themeBtn" type="button" data-auto="{t["theme"][0]}" data-light="{t["theme"][1]}" data-dark="{t["theme"][2]}"><span aria-hidden="true">◐</span><span class="lb"> {t["theme"][0]}</span></button>
-  <a class="pillbtn" href="../{O}/" hreflang="{O}" lang="{O}" data-lang="{O}">{t["other_name"]}</a>
+  <a class="pillbtn flagbtn" href="../{O}/" hreflang="{O}" lang="{O}" data-lang="{O}" title="{t["other_name"]}" aria-label="{t["other_name"]}">{FLAG[O]}</a>
 </div></header>
 
 <main id="top">
@@ -354,7 +360,6 @@ def page(t):
     <div>
       <h3 style="margin-top:0">{t["dl_steps_h"]}</h3>
       <ul>{links}</ul>
-      <div class="qrs"><figure><img src="../assets/img/qr-site.svg" alt="QR code: {SITE}/" width="150" height="150"><figcaption>{t["qr_site"]}<br><code>party-queue.github.io</code></figcaption></figure></div>
     </div>
   </div>
 </div></section>
@@ -404,7 +409,8 @@ with open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8") as f:
 body {{ margin:0; min-height:100vh; display:grid; place-items:center; background:#130a26; color:#f3ecff; font:18px/1.5 system-ui,sans-serif; text-align:center; padding:24px }}
 img {{ width:96px; height:96px; border-radius:26px; box-shadow:0 10px 34px #7c3aed77 }}
 h1 {{ margin:18px 0 6px; font-size:40px }}
-a.b {{ display:inline-block; margin:8px; padding:14px 30px; border-radius:99px; background:linear-gradient(120deg,#ff2e93,#7c3aed 55%,#22b8ff); color:#fff; text-decoration:none; font-weight:800 }}
+a.b {{ display:inline-block; margin:8px; padding:10px 14px; border-radius:18px; background:linear-gradient(120deg,#ff2e93,#7c3aed 55%,#22b8ff); line-height:0 }}
+.flag {{ width:84px; height:56px; border-radius:8px; box-shadow:0 0 0 2px #fff6; display:block }}
 </style>
 </head>
 <body>
@@ -412,7 +418,7 @@ a.b {{ display:inline-block; margin:8px; padding:14px 30px; border-radius:99px; 
   <img src="assets/img/icon.svg" alt="">
   <h1>Party Queue</h1>
   <p>One phone. One queue. Everyone's songs.<br>Jeden telefon. Jedna kolejka. Piosenki wszystkich.</p>
-  <p><a class="b" href="en/" hreflang="en">English</a><a class="b" href="pl/" hreflang="pl">Polski</a></p>
+  <p><a class="b" href="en/" hreflang="en" title="English" aria-label="English">{FLAG["en"]}</a><a class="b" href="pl/" hreflang="pl" title="Polski" aria-label="Polski">{FLAG["pl"]}</a></p>
 </div>
 <script>
   // Go straight to the visitor's language (the choice made on a page is remembered).

@@ -102,3 +102,6 @@ footer .wrap { display:flex; gap:20px; flex-wrap:wrap; justify-content:space-bet
 @media (prefers-reduced-motion:reduce) { * { transition:none !important; animation:none !important; scroll-behavior:auto !important; } }
 
 @media (max-width:520px) { .pillbtn .lb { display:none; } header.top .wrap { gap:8px; } .brand { font-size:18px; } .hero { padding-top:34px; } .dl { padding:20px; } }
+
+.flagbtn { display:inline-flex; align-items:center; padding:8px 10px; }
+.flag { width:30px; height:20px; border-radius:4px; display:block; box-shadow:0 0 0 1.5px #ffffff88; }

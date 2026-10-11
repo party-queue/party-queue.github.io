@@ -7,7 +7,7 @@ what the app does, screenshots, how to download, install and update it (with QR 
 - `index.html` – picks the visitor's language (the choice is remembered), `404.html`, `robots.txt`, `sitemap.xml`
 - `assets/` – styles, a little JavaScript (theme switch, copy buttons, the newest version read from GitHub), images
 - `assets/img/qr-download.*` – QR code of `https://github.com/party-queue/party-queue/releases/latest/download/party-queue.apk`
-  (the release workflow publishes every APK also under that fixed name, so the code never goes stale); `qr-site.*` – the site itself
+  (the release workflow publishes every APK also under that fixed name, so the code never goes stale)
 
 ## Working on it
 
