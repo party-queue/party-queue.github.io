@@ -88,12 +88,13 @@ T["en"] = dict(
     shots_h="Screenshots", shots_sub="The host's app on the phone and the web page that guests and co-hosts see.",
     shots_app="The app on the host's phone", shots_web="The web page for guests and co-hosts",
     cap=dict(
-        queue=("The queue", "Now playing with volume, the queue, and the search button."),
+        queue=("The queue", "Now playing with volume, the queue and the search button."),
         search=("Search", "Two arrow buttons: play next or add to the end."),
         proposals=("Proposals", "Approve a guest's song as next or at the end."),
         invite=("Invite", "The QR code opens the guest page; promote guests to co-hosts."),
         youtube=("YouTube tab", "The real YouTube, an address bar, and the grey + button with its hint."),
-        panel=("The + panel", "Slides up on a playlist or video page – and goes away again."),
+        panel=("The + panel: a playlist or Mix", "Shuffle and set it as the current playlist."),
+        panel_video=("The + panel: a video", "Play it next or add it to the end of the queue."),
         landscape=("Landscape", "The player on the left, the tabs on the right."),
         light=("Light theme", "Light, dark or automatic."),
         web_queue_dark=("Host page on a computer – dark", "Two columns, the keyboard and mouse work as you expect."),
@@ -215,7 +216,8 @@ T["pl"] = dict(
         proposals=("Propozycje", "Zatwierdź piosenkę gościa jako następną albo na koniec."),
         invite=("Zaproś", "Kod QR otwiera stronę gości; awansuj gości na współhostów."),
         youtube=("Karta YouTube", "Prawdziwy YouTube, pasek adresu i szary przycisk + z dymkiem."),
-        panel=("Panel +", "Wysuwa się na playliście lub filmie – i znika."),
+        panel=("Panel +: playlista lub Mix", "Losowa kolejność i ustawienie jako aktualnej playlisty."),
+        panel_video=("Panel +: film", "Zagraj jako następny albo dodaj na koniec kolejki."),
         landscape=("Widok poziomy", "Odtwarzacz po lewej, karty po prawej."),
         light=("Motyw jasny", "Jasny, ciemny albo automatyczny."),
         web_queue_dark=("Strona hosta na komputerze – ciemna", "Dwie kolumny; klawiatura i mysz działają tak, jak trzeba."),
@@ -262,13 +264,13 @@ T["pl"] = dict(
     top="Do góry",
 )
 
-APP_ORDER = ["queue", "search", "proposals", "invite", "youtube", "panel", "landscape", "light"]
+APP_ORDER = ["queue", "search", "proposals", "invite", "youtube", "panel", "panel_video", "light", "landscape"]
 WEB_ORDER = ["web_queue_dark", "web_queue_light", "web_search", "web_proposals", "web_guests", "web_guest_queue", "web_guest_search", "web_mobile"]
 WIDE = {"web_queue_dark", "web_queue_light", "web_mobile", "landscape"}
 
 
 def screen_path(key):
-    return f"assets/img/screens/{'app-' + key if not key.startswith('web_') else key.replace('_', '-')}.jpg"
+    return f"assets/img/screens/{('app-' + key if not key.startswith('web_') else key).replace('_', '-')}.jpg"
 
 
 def gallery(t):
