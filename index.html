@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Party Queue</title>
+<meta name="description" content="Party Queue – a party jukebox for Android. / Imprezowy jukebox na Androida.">
+<link rel="icon" type="image/svg+xml" href="assets/img/icon.svg">
+<link rel="alternate" hreflang="en" href="https://party-queue.github.io/en/">
+<link rel="alternate" hreflang="pl" href="https://party-queue.github.io/pl/">
+<link rel="alternate" hreflang="x-default" href="https://party-queue.github.io/">
+<meta property="og:title" content="Party Queue">
+<meta property="og:image" content="https://party-queue.github.io/assets/img/screens/web-queue-dark.jpg">
+<style>
+body { margin:0; min-height:100vh; display:grid; place-items:center; background:#130a26; color:#f3ecff; font:18px/1.5 system-ui,sans-serif; text-align:center; padding:24px }
+img { width:96px; height:96px; border-radius:26px; box-shadow:0 10px 34px #7c3aed77 }
+h1 { margin:18px 0 6px; font-size:40px }
+a.b { display:inline-block; margin:8px; padding:14px 30px; border-radius:99px; background:linear-gradient(120deg,#ff2e93,#7c3aed 55%,#22b8ff); color:#fff; text-decoration:none; font-weight:800 }
+</style>
+</head>
+<body>
+<div>
+  <img src="assets/img/icon.svg" alt="">
+  <h1>Party Queue</h1>
+  <p>One phone. One queue. Everyone's songs.<br>Jeden telefon. Jedna kolejka. Piosenki wszystkich.</p>
+  <p><a class="b" href="en/" hreflang="en">English</a><a class="b" href="pl/" hreflang="pl">Polski</a></p>
+</div>
+<script>
+  // Go straight to the visitor's language (the choice made on a page is remembered).
+  try {
+    var saved = localStorage.getItem('pqLang');
+    var l = saved || ((navigator.language || 'en').toLowerCase().indexOf('pl') === 0 ? 'pl' : 'en');
+    if (location.search.indexOf('choose') < 0) location.replace(l + '/');
+  } catch (e) { /* the buttons above still work */ }
+</script>
+</body>
+</html>
