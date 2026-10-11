@@ -7,6 +7,7 @@ REPO = "https://github.com/party-queue/party-queue"
 APK = REPO + "/releases/latest/download/party-queue.apk"
 SHA = REPO + "/releases/latest/download/party-queue.apk.sha256"
 SITE = "https://party-queue.github.io"
+SUPPORT = "https://suppi.pl/mleczakm"
 BUILD = __import__("time").strftime("%Y%m%d%H%M")
 
 # Inline SVG flags: emoji flags show up as the letters "GB" / "PL" on Windows.
@@ -124,7 +125,10 @@ T["en"] = dict(
         ("Download the new APK and open it", "Use the same QR code or link. Android installs it <b>over the old version</b>; your queue, guests and settings stay."),
         ("Get told about new versions", "On GitHub press <i>Watch → Custom → Releases</i> on the <a href=\"" + REPO + "\">repository</a>, or subscribe to the <a href=\"" + REPO + "/releases.atom\">releases feed</a> in any feed reader."),
     ],
-    upd_note="<b>If Android says the app was not installed because it conflicts with an existing package</b>, the old copy was signed with a different key (this can happen once, when switching between a build made by someone else and a release from this site). Uninstall Party Queue once and install again – the queue and guest list are lost, nothing else is: the app keeps no data anywhere but on the phone. Releases from 0.3.0 onward are signed with one project key, so later updates install over each other (versions 0.2.2 and older used a different key).",
+    support_h="Free – and it stays that way",
+    support_p="Party Queue is, and always will be, <b>completely free</b>: no ads, no paid features, no subscriptions, no accounts. I make it in my spare time. If you like what I do, you can buy me a coffee.",
+    support_btn="☕ Buy me a coffee",
+    support_note="Entirely optional – the app works the same for everyone.",
     faq_h="Questions",
     faq=[
         ("Guests cannot open the page.", "Check that they are on the same Wi-Fi as the host phone, and use the address shown in the <i>Zaproś</i> tab – the phone's address can change after it reconnects. Some routers and guest networks isolate devices from each other; switch on the host phone's hotspot and join it instead."),
@@ -137,7 +141,7 @@ T["en"] = dict(
         ("Is it legal?", "It is not affiliated with YouTube, Google or Mozilla. Using it may conflict with YouTube's Terms of Service; use it at your own risk and for private events."),
     ],
     foot_l="Party Queue is free software (AGPL-3.0). Not affiliated with YouTube, Google or Mozilla.",
-    foot_r=[("Source", REPO), ("Report a problem", REPO + "/issues"), ("Changelog", REPO + "/blob/main/CHANGELOG.md"), ("Organisation", "https://github.com/party-queue")],
+    foot_r=[("☕ Buy me a coffee", SUPPORT), ("Source", REPO), ("Report a problem", REPO + "/issues"), ("Changelog", REPO + "/blob/main/CHANGELOG.md"), ("Organisation", "https://github.com/party-queue")],
     top="Back to top",
 )
 
@@ -247,7 +251,10 @@ T["pl"] = dict(
         ("Pobierz nowy APK i otwórz go", "Użyj tego samego kodu QR lub linku. Android zainstaluje go <b>na starej wersji</b>; kolejka, goście i ustawienia zostają."),
         ("Dowiaduj się o nowych wersjach", "Na GitHubie wybierz <i>Watch → Custom → Releases</i> w <a href=\"" + REPO + "\">repozytorium</a> albo zasubskrybuj <a href=\"" + REPO + "/releases.atom\">kanał wydań</a> w dowolnym czytniku."),
     ],
-    upd_note="<b>Jeśli Android napisze, że aplikacja nie została zainstalowana z powodu konfliktu z istniejącym pakietem</b>, stara kopia była podpisana innym kluczem (może się to zdarzyć raz, przy przejściu między wersją zbudowaną przez kogoś innego a wydaniem z tej strony). Odinstaluj Party Queue i zainstaluj ponownie – tracisz kolejkę i listę gości, nic więcej: aplikacja nie trzyma danych nigdzie poza telefonem. Wydania od 0.3.0 są podpisane jednym kluczem projektu, więc kolejne aktualizacje instalują się jedna na drugiej (wersje 0.2.2 i starsze miały inny klucz).",
+    support_h="Darmowa – i tak zostanie",
+    support_p="Party Queue jest i zawsze będzie <b>w pełni darmowa</b>: bez reklam, bez płatnych funkcji, bez subskrypcji, bez kont. Robię ją w wolnym czasie. Jeśli podoba Ci się to, co robię, możesz postawić mi kawę.",
+    support_btn="☕ Postaw mi kawę",
+    support_note="Całkowicie dobrowolnie – aplikacja działa tak samo dla wszystkich.",
     faq_h="Pytania",
     faq=[
         ("Goście nie mogą otworzyć strony.", "Sprawdź, czy są w tym samym Wi-Fi co telefon gospodarza, i użyj adresu z karty <i>Zaproś</i> – adres telefonu może się zmienić po ponownym połączeniu. Niektóre routery i sieci dla gości izolują urządzenia od siebie; włącz hotspot na telefonie gospodarza i połącz się z nim."),
@@ -260,7 +267,7 @@ T["pl"] = dict(
         ("Czy to legalne?", "Projekt nie jest powiązany z YouTube, Google ani Mozillą. Korzystanie z niego może naruszać regulamin YouTube; używasz go na własną odpowiedzialność i do prywatnych wydarzeń."),
     ],
     foot_l="Party Queue to wolne oprogramowanie (AGPL-3.0). Niepowiązane z YouTube, Google ani Mozillą.",
-    foot_r=[("Kod źródłowy", REPO), ("Zgłoś problem", REPO + "/issues"), ("Lista zmian", REPO + "/blob/main/CHANGELOG.md"), ("Organizacja", "https://github.com/party-queue")],
+    foot_r=[("☕ Postaw mi kawę", SUPPORT), ("Kod źródłowy", REPO), ("Zgłoś problem", REPO + "/issues"), ("Lista zmian", REPO + "/blob/main/CHANGELOG.md"), ("Organizacja", "https://github.com/party-queue")],
     top="Do góry",
 )
 
@@ -377,7 +384,13 @@ def page(t):
   <h3 style="margin:30px 0 8px">{t["verify_h"]}</h3><p>{t["verify_p"]}</p><pre><code>{html.escape(t["verify_cmds"])}</code></pre>
 </div></section>
 
-<section id="update"><div class="wrap"><h2>{t["upd_h"]}</h2><p class="sub">{t["upd_sub"]}</p><ol class="steps">{upd}</ol><div class="note">{t["upd_note"]}</div></div></section>
+<section id="update"><div class="wrap"><h2>{t["upd_h"]}</h2><p class="sub">{t["upd_sub"]}</p><ol class="steps">{upd}</ol></div></section>
+
+<section id="support"><div class="wrap"><div class="support">
+  <h2>{t["support_h"]}</h2><p>{t["support_p"]}</p>
+  <p><a class="btn primary" href="{SUPPORT}" rel="noopener">{t["support_btn"]}</a></p>
+  <p class="meta">{t["support_note"]}</p>
+</div></div></section>
 
 <section id="faq"><div class="wrap"><h2>{t["faq_h"]}</h2>{faq}</div></section>
 </main>
