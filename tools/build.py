@@ -7,11 +7,12 @@ REPO = "https://github.com/party-queue/party-queue"
 APK = REPO + "/releases/latest/download/party-queue.apk"
 SHA = REPO + "/releases/latest/download/party-queue.apk.sha256"
 SITE = "https://party-queue.github.io"
+BUILD = __import__("time").strftime("%Y%m%d%H%M")
 
 # Inline SVG flags: emoji flags show up as the letters "GB" / "PL" on Windows.
 FLAG = {
-    "en": '<svg class="flag" viewBox="0 0 60 30" aria-hidden="true" focusable="false"><clipPath id="fs"><path d="M0,0 v30 h60 v-30 z"/></clipPath><clipPath id="ft"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath><g clip-path="url(#fs)"><path d="M0,0 v30 h60 v-30 z" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#ft)" stroke="#C8102E" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/></g></svg>',
-    "pl": '<svg class="flag" viewBox="0 0 8 5" aria-hidden="true" focusable="false"><rect width="8" height="5" fill="#fff"/><rect y="2.5" width="8" height="2.5" fill="#dc143c"/></svg>',
+    "en": '<svg class="flag" width="30" height="20" viewBox="0 0 60 30" aria-hidden="true" focusable="false"><clipPath id="fs"><path d="M0,0 v30 h60 v-30 z"/></clipPath><clipPath id="ft"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath><g clip-path="url(#fs)"><path d="M0,0 v30 h60 v-30 z" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#ft)" stroke="#C8102E" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/></g></svg>',
+    "pl": '<svg class="flag" width="30" height="20" viewBox="0 0 8 5" aria-hidden="true" focusable="false"><rect width="8" height="5" fill="#fff"/><rect y="2.5" width="8" height="2.5" fill="#dc143c"/></svg>',
 }
 
 # -------------------------------------------------------------------------------------------------------------- text
@@ -326,7 +327,7 @@ def page(t):
 <meta property="og:locale" content="{t["locale"]}">
 <meta property="og:image" content="{SITE}/assets/img/screens/web-queue-dark.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="../assets/style.css?v={BUILD}">
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -380,7 +381,7 @@ def page(t):
 </main>
 
 <footer><div class="wrap"><div>{t["foot_l"]}</div><div>{foot} · <a href="#top">{t["top"]}</a></div></div></footer>
-<script src="../assets/site.js"></script>
+<script src="../assets/site.js?v={BUILD}"></script>
 </body>
 </html>
 '''
@@ -418,7 +419,7 @@ a.b {{ display:inline-block; margin:8px; padding:10px 14px; border-radius:18px; 
   <img src="assets/img/icon.svg" alt="">
   <h1>Party Queue</h1>
   <p>One phone. One queue. Everyone's songs.<br>Jeden telefon. Jedna kolejka. Piosenki wszystkich.</p>
-  <p><a class="b" href="en/" hreflang="en" title="English" aria-label="English">{FLAG["en"]}</a><a class="b" href="pl/" hreflang="pl" title="Polski" aria-label="Polski">{FLAG["pl"]}</a></p>
+  <p><a class="b" href="en/" hreflang="en" title="English" aria-label="English">{FLAG["en"].replace('width="30" height="20"', 'width="84" height="56"')}</a><a class="b" href="pl/" hreflang="pl" title="Polski" aria-label="Polski">{FLAG["pl"].replace('width="30" height="20"', 'width="84" height="56"')}</a></p>
 </div>
 <script>
   // Go straight to the visitor's language (the choice made on a page is remembered).
